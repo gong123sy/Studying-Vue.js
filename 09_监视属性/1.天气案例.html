@@ -9,9 +9,13 @@
 	<body>
 		<!-- 准备好一个容器-->
 		<div id="root">
-			<h2>今天天气很{{info}}</h2>
+			<h2>今天天气{{info}}</h2>
 			<!-- 绑定事件的时候：@xxx="yyy" yyy可以写一些简单的语句 -->
 			<!-- <button @click="isHot = !isHot">切换天气</button> -->
+			 <!-- 
+			<button @click="window.alert(1)">切换天气</button>  
+			想让这一句生效，可以在data中加入window
+			-->
 			<button @click="changeWeather">切换天气</button>
 		</div>
 	</body>
@@ -23,6 +27,7 @@
 			el:'#root',
 			data:{
 				isHot:true,
+				//window   //属性值和属性名相同，可以省略
 			},
 			computed:{
 				info(){

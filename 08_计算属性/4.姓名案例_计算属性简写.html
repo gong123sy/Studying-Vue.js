@@ -38,7 +38,9 @@
 						this.lastName = arr[1]
 					}
 				} */
-				//简写
+				//简写，不需要set方法
+				//函数名就是计算属性的名字，函数当get函数去用
+				//由 fullName:function(){...} 简写为 fullName(){...}
 				fullName(){
 					console.log('get被调用了')
 					return this.firstName + '-' + this.lastName

@@ -47,7 +47,7 @@
 				} */
 			}
 		})
-
+//简写，不能配置immediate和deep，也不能写箭头函数
 		//正常写法
 		/* vm.$watch('isHot',{
 			immediate:true, //初始化时让handler调用一下
@@ -58,9 +58,9 @@
 		}) */
 
 		//简写
-		/* vm.$watch('isHot',(newValue,oldValue)=>{
+		vm.$watch('isHot',function(newValue,oldValue){
 			console.log('isHot被修改了',newValue,oldValue,this)
-		}) */
+		}) 
 
 	</script>
 </html>

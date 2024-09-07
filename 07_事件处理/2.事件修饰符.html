@@ -33,30 +33,30 @@
 		</style>
 	</head>
 	<body>
-		<!-- 
-				Vue中的事件修饰符：
-						1.prevent：阻止默认事件（常用）；
-						2.stop：阻止事件冒泡（常用）；
-						3.once：事件只触发一次（常用）；
-						4.capture：使用事件的捕获模式；
-						5.self：只有event.target是当前操作的元素时才触发事件；
-						6.passive：事件的默认行为立即执行，无需等待事件回调执行完毕；
-		-->
+<!-- 
+Vue中的事件修饰符：
+	1.prevent：阻止默认事件（常用）；
+	2.stop：阻止事件冒泡（常用）；
+	3.once：事件只触发一次（常用）；
+	4.capture：捕获阶段触发事件；
+	5.self：只有event.target是当前操作的元素时才触发事件；
+	6.passive：事件的默认行为立即执行，无需等待事件回调执行完毕；
+-->
 		<!-- 准备好一个容器-->
 		<div id="root">
 			<h2>欢迎来到{{name}}学习</h2>
 			<!-- 阻止默认事件（常用） -->
-			<a href="http://www.atguigu.com" @click.prevent="showInfo">点我提示信息</a>
+			<a href="http://www.bing.com" @click.prevent="showInfo">点我提示信息，阻止默认</a>
 
 			<!-- 阻止事件冒泡（常用） -->
 			<div class="demo1" @click="showInfo">
-				<button @click.stop="showInfo">点我提示信息</button>
+				<button @click.stop="showInfo">点我提示信息，阻止冒泡</button>
 				<!-- 修饰符可以连续写 -->
 				<!-- <a href="http://www.atguigu.com" @click.prevent.stop="showInfo">点我提示信息</a> -->
 			</div>
 
 			<!-- 事件只触发一次（常用） -->
-			<button @click.once="showInfo">点我提示信息</button>
+			<button @click.once="showInfo">点我提示信息，触发一次</button>
 
 			<!-- 使用事件的捕获模式 -->
 			<div class="box1" @click.capture="showMsg(1)">
@@ -72,6 +72,9 @@
 			</div>
 
 			<!-- 事件的默认行为立即执行，无需等待事件回调执行完毕； -->
+			 <!-- 不加passive 就是滚动时函数执行完，滚轮才往下走 -->
+			<!-- @sroll 滚动条滚动触发 -->
+			<!-- @wheel 滚轮滚动触发 -->
 			<ul @wheel.passive="demo" class="list">
 				<li>1</li>
 				<li>2</li>
@@ -88,10 +91,14 @@
 		new Vue({
 			el:'#root',
 			data:{
-				name:'尚硅谷'
+				name:'bilibili'
 			},
 			methods:{
 				showInfo(e){
+					//通常的写法
+					// e.preventDefault() //阻止默认事件
+					// e.stopPropagation() //阻止事件冒泡
+
 					alert('同学你好！')
 					// console.log(e.target)
 				},
@@ -99,7 +106,7 @@
 					console.log(msg)
 				},
 				demo(){
-					for (let i = 0; i < 100000; i++) {
+					for (let i = 0; i < 1000; i++) {
 						console.log('#')
 					}
 					console.log('累坏了')
